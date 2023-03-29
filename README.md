@@ -45,39 +45,42 @@ The main objective of this project is to create a multi-step form that allows us
 
 ### What I learned
 
-This project helped me reinforce my knowledge and improve my skills in React and Styled Components. I also learned how to create a multi-step form that provides form validation messages and allows users to go back to previous steps to update their selections. Below are some examples of code snippets I'm proud of:
-
+<p>This project helped me reinforce my knowledge and improve my skills in React and Styled Components. I also learned how to create a multi-step form that provides form validation messages and allows users to go back to previous steps to update their selections. Below are some examples of code snippets I'm proud of:</p>
+<code>
+const navigation = {
+    previous: () => setStep(step => step - 1),
+    next: () => setStep(step => step + 1),
+    go: step => setStep(step),
+};
+</br>
 const handleNext = () => {
 const isValid = validate();
-if (isValid) {
-navigation.next();
-}
+  if (isValid) {
+    navigation.next();
+  }
 };
-
+</br>
 const validate = () => {
 const { userName, phoneNum, email } = formData;
 const errors = {};
-
-    if (!userName) {
-      errors.userName = "Username is required";
-    }
-
-    if (!phoneNum) {
-      errors.phoneNum = "Phone number is required";
-    } else if (!/^\d{10}$/.test(phoneNum)) {
-      errors.phoneNum = "Invalid phone number";
-    }
-
-    if (!email) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = "Invalid email address";
-    }
-
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-
+if (!userName) {
+  errors.userName = "Username is required";
+}
+if (!phoneNum) {
+  errors.phoneNum = "Phone number is required";
+} else if (!/^\d{10}$/.test(phoneNum)) {
+  errors.phoneNum = "Invalid phone number";
+}
+if (!email) {
+  errors.email = "Email is required";
+} else if (!/\S+@\S+\.\S+/.test(email)) {
+  errors.email = "Invalid email address";
+}
+setErrors(errors);
+return Object.keys(errors).length === 0;
 };
+</code>
+</br>
 
 In terms of design, I gained experience using a mobile-first workflow and implementing responsive layouts using Flexbox and CSS Grid. I also learned how to use Styled Components to style my React components and sweetalert2 implementation, which helped to keep my CSS organized and easy to maintain.
 
