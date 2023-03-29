@@ -24,7 +24,7 @@ The main objective of this project is to create a multi-step form that allows us
 
 ### Screenshot
 
-![](https://i.ibb.co/yW9gm1x/Multi-step-form-desk.png)
+![](https://i.ibb.co/5kZYQQd/Multi-step-form-desk.png)
 
 ### Links
 
