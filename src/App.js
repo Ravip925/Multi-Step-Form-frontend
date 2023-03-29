@@ -24,7 +24,7 @@ const AppContainer = styled.div`
 })}
 `;
 const AppWrapper = styled.div`
-  width: 65%;
+  width: 900px;
   height: 80vh;
   border-radius: 15px;
   background-color: white;
@@ -215,7 +215,7 @@ const App = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 425) {
+      if (window.innerWidth <= 602) {
         setIsMobileWidth(true);
       } else {
         setIsMobileWidth(false);
