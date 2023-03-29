@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import "../App.css";
@@ -75,16 +74,15 @@ const Text = styled.div`
     font-size: 0.9rem;
     color: #686868;
   }
-  small{
+  small {
     font-size: 0.75rem;
     font-weight: 500;
     color: hsl(213, 96%, 18%);
   }
 `;
- 
-const Span = styled.span`
 
-    &:before {
+const Span = styled.span`
+  &:before {
     position: absolute;
     content: "";
     height: 0.85em;
@@ -93,16 +91,17 @@ const Span = styled.span`
     left: 0.15em;
     bottom: 0.146em;
     background-color: #ffffff;
-    transition: .4s;
+    transition: 0.4s;
   }
-  ${props => props.checked && css`
-    &:before {
-      transform: translateX(0.98em);
-      background-color: #fff;
-    }
-  `}
-
-`
+  ${(props) =>
+    props.checked &&
+    css`
+      &:before {
+        transform: translateX(0.98em);
+        background-color: #fff;
+      }
+    `}
+`;
 
 const Monthly = styled.p`
   color: ${(props) => props.color};
@@ -264,10 +263,7 @@ const PlanSelection = ({
             <Monthly color={check ? "#686868" : "hsl(213, 96%, 18%)"}>
               <b>Monthly</b>
             </Monthly>
-            <div
-              className="checkbox-wrapper-64"
-              
-            >
+            <div className="checkbox-wrapper-64">
               <label className="switch">
                 <input
                   type="checkbox"
@@ -275,7 +271,11 @@ const PlanSelection = ({
                   value={billingCycle}
                   onClick={handleBillingChange}
                 />
-                <Span onClick={() => setCheck(!check)} checked={check} className="slider"></Span>
+                <Span
+                  onClick={() => setCheck(!check)}
+                  checked={check}
+                  className="slider"
+                ></Span>
               </label>
             </div>
             <Yearly color={check ? "hsl(213, 96%, 18%)" : "#686868"}>

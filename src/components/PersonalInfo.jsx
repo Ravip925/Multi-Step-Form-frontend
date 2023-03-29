@@ -124,7 +124,6 @@ const PersonalInfo = ({ formData, handleChange, errors }) => {
             required
             autoComplete="off"
             type={"number"}
-            z
             placeholder="Phone Number"
             id="phoneNum"
             name="phoneNum"

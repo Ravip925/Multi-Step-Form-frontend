@@ -86,7 +86,7 @@ const Desc = styled.p`
   color: #454545;
 `;
 
-const Finish = ({ formData, billingCycle,navigation }) => {
+const Finish = ({ formData, billingCycle, navigation }) => {
   const { plan, addons } = formData;
 
   const planPrices = {
@@ -98,7 +98,6 @@ const Finish = ({ formData, billingCycle,navigation }) => {
     "pro-yearly": 150,
   };
   const planPrice = planPrices[`${plan}-${billingCycle}`];
-  console.log(planPrice);
 
   const onlineServicePrice = billingCycle === "monthly" ? 1 : 10;
   const largerStoragePrice = billingCycle === "monthly" ? 2 : 20;
@@ -132,7 +131,12 @@ const Finish = ({ formData, billingCycle,navigation }) => {
                     ({billingCycle})
                   </h4>
                 </Items>
-                <p style={{cursor:"pointer"}} onClick={()=>navigation.go(1)}>Change</p>
+                <p
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigation.go(1)}
+                >
+                  Change
+                </p>
               </div>
               <Items style={{ color: "hsl(213, 96%, 18%)", fontWeight: "550" }}>
                 {`$${planPrice}/${billingCycle === "monthly" ? "mo" : "yr"}`}
@@ -168,11 +172,11 @@ const Finish = ({ formData, billingCycle,navigation }) => {
             </AddOns>
           </Box>
           <Total>
-            <Desc style={{ fontSize: "1rem" }}>Total (per {billingCycle === "monthly" ? "month" : "year"})</Desc>
+            <Desc style={{ fontSize: "1rem" }}>
+              Total (per {billingCycle === "monthly" ? "month" : "year"})
+            </Desc>
             <Price style={{ fontSize: "1.3rem", fontWeight: "550" }}>
-            {`+$${total}/${
-                      billingCycle === "monthly" ? "mo" : "yr"
-                    }`}
+              {`+$${total}/${billingCycle === "monthly" ? "mo" : "yr"}`}
             </Price>
           </Total>
         </BoxContainer>

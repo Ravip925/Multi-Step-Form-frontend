@@ -72,17 +72,6 @@
     border-radius: 30px;
   }
 
-  /* .checkbox-wrapper-64 .slider:before {
-    position: absolute;
-    content: "";
-    height: 0.85em;
-    width: 0.85em;
-    border-radius: 20px;
-    left: 0.15em;
-    bottom: 0.146em;
-    background-color: #ffffff;
-    transition: .4s;
-  } */
   .yearly{
     color: #7f8387;
   }
@@ -97,8 +86,3 @@
   .checkbox-wrapper-64 input:focus + .slider {
     box-shadow: 0 0 1px #007bff;
   }
-/* 
-  .checkbox-wrapper-64 input:checked + .slider:before {
-    transform: translateX(0.98em);
-    background-color: #fff;
-  } */

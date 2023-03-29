@@ -21,25 +21,23 @@ const Box = styled.div`
   gap: 0.5rem;
 `;
 const Title = styled.h1`
-    font-weight: 700;
-    color: hsl(213, 96%, 18%);
-
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
 `;
 const Desc = styled.p`
-    text-align: center;
-    line-height: 30px;
-    font-weight: 500;
-    color: #7c7b7b;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 500;
+  color: #7c7b7b;
 `;
 
-
 const Icon = styled.div`
-    width: 100px;
-    height: 100px;
-    background-image: url(${props=>props.path});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  width: 100px;
+  height: 100px;
+  background-image: url(${(props) => props.path});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 
 const ThankYou = () => {
@@ -53,7 +51,11 @@ const ThankYou = () => {
           <Title>Thank You!</Title>
         </Box>
         <Box>
-          <Desc>Thanks for confirming your subscription! We hope you have fun using our platform. if you ever need support, please feel free to email us at support@loremgaming.com</Desc>
+          <Desc>
+            Thanks for confirming your subscription! We hope you have fun using
+            our platform. if you ever need support, please feel free to email us
+            at support@loremgaming.com
+          </Desc>
         </Box>
       </Wrapper>
     </Container>

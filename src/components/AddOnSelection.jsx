@@ -107,7 +107,7 @@ const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
               <Checkbox
                 name="onlineService"
                 id="onlineService"
-                defaultChecked={addons?.onlineService}
+                checked={addons?.onlineService}
                 onChange={handleCheckboxChange}
               />
             </CheckBox>
@@ -115,14 +115,16 @@ const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
               <Text>Online Service</Text>
               <Desc>Access to multiplayer games</Desc>
             </TextFields>
-            <Price>{`+$${onlineServicePrice}/${billingCycle === "monthly" ? "mo" : "yr"}`}</Price>
+            <Price>{`+$${onlineServicePrice}/${
+              billingCycle === "monthly" ? "mo" : "yr"
+            }`}</Price>
           </Boxes>
           <Boxes>
             <CheckBox>
               <Checkbox
                 name="largerStorage"
                 id="largerStorage"
-                defaultChecked={addons?.largerStorage}
+                checked={addons?.largerStorage}
                 onChange={handleCheckboxChange}
               />
             </CheckBox>
@@ -130,14 +132,16 @@ const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
               <Text>Larger Storage</Text>
               <Desc>Extra 1TB of cloud save</Desc>
             </TextFields>
-            <Price>{`+$${largerStoragePrice}/${billingCycle === "monthly" ? "mo" : "yr"}`}</Price>
+            <Price>{`+$${largerStoragePrice}/${
+              billingCycle === "monthly" ? "mo" : "yr"
+            }`}</Price>
           </Boxes>
           <Boxes>
             <CheckBox>
               <Checkbox
                 name="customize"
                 id="customize"
-                defaultChecked={addons?.customize}
+                checked={addons?.customize}
                 onChange={handleCheckboxChange}
               />
             </CheckBox>
@@ -145,7 +149,9 @@ const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
               <Text>Customizable profile</Text>
               <Desc>Custome theme on your profile</Desc>
             </TextFields>
-            <Price>{`+$${customizePrice}/${billingCycle === "monthly" ? "mo" : "yr"}`}</Price>
+            <Price>{`+$${customizePrice}/${
+              billingCycle === "monthly" ? "mo" : "yr"
+            }`}</Price>
           </Boxes>
         </BoxContainer>
       </Wrapper>

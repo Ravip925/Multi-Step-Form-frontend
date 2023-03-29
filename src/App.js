@@ -105,6 +105,7 @@ const App = () => {
       largerStorage: false
     },
   });
+  
   const [errors, setErrors] = useState({});
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [step, setStep] = useState(0);
@@ -150,9 +151,6 @@ const App = () => {
     }
   };
 
-  
-
-
   const handleBillingChange = () => {
     setBillingCycle((prevBillingCycle) =>
       prevBillingCycle === "monthly" ? "yearly" : "monthly"
@@ -177,6 +175,8 @@ const App = () => {
       text: 'Please select a plan!',
     }) : navigation.next();
   };
+
+
   return (
     <AppContainer>
       <AppWrapper>
