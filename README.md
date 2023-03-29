@@ -98,7 +98,7 @@ During this project, I found the following resources to be particularly helpful:
 
 ## Author
 
-- Website - [Ravichandra Patil](https://www.your-site.com)
+- Website - [Ravichandra Patil](https://react-portfolio-ravi.netlify.app/)
 - Frontend Mentor - [Ravip925](https://www.frontendmentor.io/profile/Ravip925)
 - Twitter - [@Ravipatiiil](https://twitter.com/Ravipatiiil)
 
