@@ -1,5 +1,6 @@
 import { Checkbox } from "@mui/material";
 import styled from "styled-components";
+import { mobile } from "../Responsive";
 
 const Container = styled.div`
   flex: 2;
@@ -8,12 +9,19 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${mobile({
+    marginTop: "0rem",
+    padding: "1.5rem 1rem",
+  })}
 `;
 const Wrapper = styled.div`
   width: 79%;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
+  ${mobile({
+    width: "100%",
+  })}
 `;
 const Title = styled.div`
   width: 100%;
@@ -22,6 +30,15 @@ const Title = styled.div`
   gap: 8px;
   p {
     color: #6b6b6b;
+    ${mobile({
+      lineHeight: "23px",
+      fontSize: "0.95rem",
+    })}
+  }
+  h1 {
+    ${mobile({
+      fontSize: "1.8rem",
+    })}
   }
 `;
 
@@ -37,12 +54,14 @@ const Boxes = styled.div`
   width: 100%;
   height: 70px;
   border-radius: 10px;
-  border: 1px solid #aeaeae;
   display: flex;
   overflow: hidden;
-  &:hover {
-    border-color: blue;
-  }
+  border: ${(props) => (props.active ? "1px solid blue" : "1px solid #aeaeae")};
+  ${mobile({
+    paddingRight: "0.7rem",
+    paddingLeft: "0.5rem",
+    height: "80px",
+  })}
 `;
 const CheckBox = styled.div`
   flex: 0.3;
@@ -58,6 +77,9 @@ const TextFields = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 5px;
+  ${mobile({
+    flex: "1",
+  })}
 `;
 const Price = styled.div`
   flex: 0.45;
@@ -65,15 +87,24 @@ const Price = styled.div`
   color: #1e568f;
   display: grid;
   place-items: center;
+  ${mobile({
+    fontSize: "0.9rem",
+  })}
 `;
 const Text = styled.p`
   font-weight: 550;
   font-size: 0.95rem;
   color: hsl(213, 96%, 18%);
+  ${mobile({
+    fontSize: "0.9rem",
+  })}
 `;
 const Desc = styled.p`
   font-size: 0.85rem;
   color: #6e6e6e;
+  ${mobile({
+    fontSize: "0.8rem",
+  })}
 `;
 
 const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
@@ -102,7 +133,7 @@ const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
           <p>Add-ons help enhance your gaming experience.</p>
         </Title>
         <BoxContainer>
-          <Boxes>
+          <Boxes active={addons.onlineService}>
             <CheckBox>
               <Checkbox
                 name="onlineService"
@@ -119,7 +150,7 @@ const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
               billingCycle === "monthly" ? "mo" : "yr"
             }`}</Price>
           </Boxes>
-          <Boxes>
+          <Boxes active={addons.largerStorage}>
             <CheckBox>
               <Checkbox
                 name="largerStorage"
@@ -136,7 +167,7 @@ const AddOnSelection = ({ formData, setFormData, billingCycle }) => {
               billingCycle === "monthly" ? "mo" : "yr"
             }`}</Price>
           </Boxes>
-          <Boxes>
+          <Boxes active={addons.customize}>
             <CheckBox>
               <Checkbox
                 name="customize"

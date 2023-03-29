@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PersonalInfo from './components/PersonalInfo';
 import PlanSelection from './components/PlanSelection';
@@ -8,6 +8,9 @@ import SideBar from './components/SideBar';
 import './App.css'
 import Swal from 'sweetalert2';
 import ThankYou from './components/ThankYou';
+import { mobile } from './Responsive';
+import MobileSideBar from './components/MobileSideBar';
+import 'animate.css'
 
 const AppContainer = styled.div`
   width: 100%;
@@ -15,6 +18,10 @@ const AppContainer = styled.div`
   background-color: #E3FDFD;
   display: grid;
   place-items: center;
+  ${mobile({
+  padding: "1rem",
+  position: "relative",
+})}
 `;
 const AppWrapper = styled.div`
   width: 65%;
@@ -25,6 +32,16 @@ const AppWrapper = styled.div`
   display: flex;
   padding: 1rem;
   overflow: hidden;
+  ${mobile({
+  height: "auto",
+  maxHeight: "480px",
+  width: "100%",
+  flexDirection: "column",
+  position: "static",
+  zIndex: "100",
+  borderRadius: "10px",
+  padding: "0.5rem"
+})}
 `;
 const MainContent = styled.div`
   flex: 1;
@@ -34,7 +51,9 @@ const MainContent = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
-
+  ${mobile({
+  flex: "2"
+})}
 `;
 const ButtonsContainer = styled.div`
   width: 100%;
@@ -42,8 +61,15 @@ const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  display: ${props=>props.step === 4 && "none"};
- 
+  display: ${props => props.step === 4 && "none"};
+  ${mobile({
+  height: "70px",
+  backgroundColor: "white",
+  position: "absolute",
+  bottom: "0",
+  left: "0",
+  zIndex: "1",
+})}
 `;
 
 const Button = styled.button`
@@ -75,6 +101,14 @@ const Button = styled.button`
 &:disabled {
   cursor: default;
 }
+
+  ${mobile({
+  width: "110px",
+  height: "40px",
+  fontSize: "1rem",
+  margin: "0",
+  padding: "0"
+})}
 `
 const GoBack = styled.button`
   width: 120px;
@@ -105,10 +139,11 @@ const App = () => {
       largerStorage: false
     },
   });
-  
+
   const [errors, setErrors] = useState({});
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [step, setStep] = useState(0);
+  const [isMobileWidth, setIsMobileWidth] = useState(false);
 
   const handleChange = ({ currentTarget: input }) => {
     setFormData({ ...formData, [input.name]: input.value });
@@ -162,7 +197,7 @@ const App = () => {
     { component: <PlanSelection formData={formData} handleBillingChange={handleBillingChange} handleChange={handleChange} billingCycle={billingCycle} /> },
     { component: <AddOnSelection formData={formData} billingCycle={billingCycle} setFormData={setFormData} navigation={navigation} /> },
     { component: <Finish formData={formData} billingCycle={billingCycle} navigation={navigation} /> },
-    { component: <ThankYou/> },
+    { component: <ThankYou /> },
   ];
 
   const { component } = steps[step];
@@ -177,11 +212,25 @@ const App = () => {
   };
 
 
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 425) {
+        setIsMobileWidth(true);
+      } else {
+        setIsMobileWidth(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <AppContainer>
-      <AppWrapper>
-        <SideBar step={step} steps={steps} />
-        <MainContent>
+      <MobileSideBar step={step} />
+      <AppWrapper className={isMobileWidth ? "" : 'animate__animated animate__zoomIn'}>
+        <SideBar step={step} isMobileWidth={isMobileWidth} />
+        <MainContent className={isMobileWidth ? "" : 'animate__animated animate__fadeInDownBig'}>
           {component}
           <ButtonsContainer step={step}>
             {step > 0 && <GoBack style={{ justifySelf: "flex-end" }} onClick={navigation.previous}>Go Back</GoBack>}

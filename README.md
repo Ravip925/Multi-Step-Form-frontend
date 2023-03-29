@@ -28,8 +28,8 @@ The main objective of this project is to create a multi-step form that allows us
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- GitHub Repo URL: [Add solution URL here](https://github.com/Ravip925/Multi-Step-Form-frontend)
+- Live Site URL: [Add live site URL here](https://multi-step-form-frontend-ravip925.vercel.app/)
 
 ## My Approach
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import "../App.css";
+import { mobile } from "../Responsive";
 
 const Container = styled.div`
   flex: 2;
@@ -9,11 +10,16 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${mobile({
+    marginTop: "0rem",
+    padding: "1.1rem 1rem",
+  })}
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
+  ${mobile({})}
 `;
 const Title = styled.div`
   display: flex;
@@ -21,6 +27,14 @@ const Title = styled.div`
   gap: 8px;
   p {
     color: #6b6b6b;
+    ${mobile({
+      fontSize: "0.95rem",
+    })}
+  }
+  h1 {
+    ${mobile({
+      fontSize: "1.8rem",
+    })}
   }
 `;
 
@@ -29,6 +43,9 @@ const RadioBoxes = styled.div`
   display: flex;
   gap: 1.1rem;
   margin-bottom: 20px;
+  ${mobile({
+    flexDirection: "column",
+  })}
 `;
 const Boxes = styled.div`
   width: 140px;
@@ -42,6 +59,15 @@ const Boxes = styled.div`
   flex-direction: column;
   justify-content: space-around;
   position: relative;
+  ${mobile({
+    width: "100%",
+    height: "72px",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "1rem",
+    padding: "0.6rem 0.8rem",
+  })}
 `;
 
 const SubSelectButton = styled.div`
@@ -61,18 +87,37 @@ const Icon = styled.div`
   height: 40px;
   border-radius: 50%;
   background-image: url(${(props) => props.url});
+  background-size: cover;
+  background-position: center;
+  ${mobile({
+    width: "40px",
+    height: "40px",
+  })}
 `;
 const Text = styled.div`
   width: 100%;
   height: 75px;
   line-height: 24px;
+  ${mobile({
+    width: "75%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    lineHeight: "20px",
+  })}
   h4 {
     font-weight: 550;
     color: hsl(213, 96%, 18%);
+    ${mobile({
+      fontSize: "0.9rem",
+    })}
   }
   p {
     font-size: 0.9rem;
     color: #686868;
+    ${mobile({
+      fontSize: "0.85rem",
+    })}
   }
   small {
     font-size: 0.75rem;
@@ -116,14 +161,44 @@ const PlanSelection = ({
   billingCycle,
   handleBillingChange,
 }) => {
-  const [check, setCheck] = useState(false);
-  const [selectedBoxIndex, setSelectedBoxIndex] = useState(null);
+  const [check, setCheck] = useState(
+    localStorage.getItem("isChecked") === "true"
+  );
+  const [selectedBoxIndex, setSelectedBoxIndex] = useState(
+    localStorage.getItem("selected")
+      ? Number(localStorage.getItem("selected"))
+      : null
+  );
   //
   const { plan } = formData;
 
   const handleBoxClick = (index) => {
     setSelectedBoxIndex(index);
   };
+
+  useEffect(() => {
+    // Get the value of the `check` state from localStorage
+    const storedCheck = localStorage.getItem("check");
+    // If the value is not null or undefined, update the `check` state
+    if (storedCheck !== null && storedCheck !== undefined) {
+      setCheck(storedCheck === true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const SavedSelectedIndex = localStorage.getItem("select");
+    if (SavedSelectedIndex) {
+      setSelectedBoxIndex(Number(SavedSelectedIndex));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isChecked", check);
+  }, [check]);
+
+  useEffect(() => {
+    localStorage.setItem("selected", JSON.stringify(selectedBoxIndex));
+  }, [selectedBoxIndex]);
 
   return (
     <Container>
@@ -267,6 +342,7 @@ const PlanSelection = ({
               <label className="switch">
                 <input
                   type="checkbox"
+                  defaultChecked={check}
                   name="billingCycle"
                   value={billingCycle}
                   onClick={handleBillingChange}

@@ -8,8 +8,18 @@ const Container = styled.div`
   place-items: start;
   border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
+  display: none;
   ${mobile({
-    display: "none",
+    display: "block",
+    height: "200px",
+    width: "100%",
+    overflow: "hidden",
+    position: "absolute",
+    top: "0",
+    right: "0",
+    zIndex: "2",
+    borderBottomLeftRadius: "0",
+    borderTopLeftRadius: "0",
   })}
 `;
 const Wrapper = styled.div`
@@ -22,6 +32,15 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
+
+  ${mobile({
+    width: "100%",
+    height: "200px",
+    borderRadius: "0",
+    backgroundImage: "url(/images/bg-sidebar-mobile.svg)",
+    backgroundSize: "cover",
+    objectFit: "fill",
+  })}
 `;
 const BoxContainer = styled.div`
   width: 195px;
@@ -30,6 +49,12 @@ const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  ${mobile({
+    width: "220px",
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingTop: "2rem",
+  })}
 `;
 const Boxes = styled.div`
   width: 100%;
@@ -52,52 +77,36 @@ const ItemNumber = styled.div`
   font-family: "ubuntu", sans-serif;
   background-color: ${(props) =>
     props.active ? "#79d5ff" : "rgba(0, 0, 0, 0)"};
-`;
-const Info = styled.div`
-  flex: 1;
-  height: 100%;
-  color: white;
-  font-size: 0.87rem;
-  font-family: "ubuntu", sans-serif;
+
+  ${mobile({
+    width: "35px",
+    height: "35px",
+  })}
 `;
 
-const SideBar = ({ step, isMobileWidth }) => {
+const MobileSideBar = ({ step }) => {
   const itemsArr = [
     {
       itemNum: "1",
-      info: "YOUR INFO",
     },
     {
       itemNum: "2",
-      info: "SELECT PLAN",
     },
     {
       itemNum: "3",
-      info: "ADD-ONS",
     },
     {
       itemNum: "4",
-      info: "SUMMARY",
     },
   ];
 
   return (
-    <Container
-      className={isMobileWidth ? "" : "animate__animated animate__fadeInUpBig"}
-    >
+    <Container>
       <Wrapper>
         <BoxContainer>
           {itemsArr.map((items, index) => (
             <Boxes key={items.itemNum}>
               <ItemNumber active={index === step}>{items.itemNum}</ItemNumber>
-              <Info>
-                <p>
-                  <small style={{ fontSize: "0.65rem", color: "#c7c7c7" }}>
-                    STEP {items.itemNum}
-                  </small>
-                </p>
-                <p style={{ fontWeight: "500" }}>{items.info}</p>
-              </Info>
             </Boxes>
           ))}
         </BoxContainer>
@@ -106,4 +115,4 @@ const SideBar = ({ step, isMobileWidth }) => {
   );
 };
 
-export default SideBar;
+export default MobileSideBar;

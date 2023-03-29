@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import "../App.css";
+import { mobile } from "../Responsive";
 
 const Container = styled.div`
   flex: 2;
@@ -7,6 +8,13 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  ${mobile({
+    flex: "1",
+    position: "relative",
+    zIndex: "3",
+    marginTop: "0rem",
+    padding: "1.5rem 1rem",
+  })}
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -19,6 +27,15 @@ const Title = styled.div`
   gap: 8px;
   p {
     color: #6b6b6b;
+    ${mobile({
+      lineHeight: "25px",
+      fontSize: "0.95rem",
+    })}
+  }
+  h1 {
+    ${mobile({
+      fontSize: "1.8rem",
+    })}
   }
 `;
 
@@ -54,7 +71,9 @@ const TextField = styled.input`
   outline: none;
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   box-shadow: 0px 0px 20px -18px;
-
+  ${mobile({
+    marginBottom: "5px",
+  })}
   &:hover {
     border: 2px solid lightgrey;
     box-shadow: 0px 0px 20px -17px;

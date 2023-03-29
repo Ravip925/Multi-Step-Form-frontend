@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../Responsive";
 
 const Container = styled.div`
   flex: 2;
@@ -7,12 +8,19 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${mobile({
+    marginTop: "0.5rem",
+    padding: "0 1rem",
+  })}
 `;
 const Wrapper = styled.div`
   width: 79%;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
+  ${mobile({
+    width: "100%",
+  })}
 `;
 const Title = styled.div`
   width: 100%;
@@ -21,6 +29,15 @@ const Title = styled.div`
   gap: 8px;
   p {
     color: #6b6b6b;
+    ${mobile({
+      lineHeight: "25px",
+      fontSize: "0.95rem",
+    })}
+  }
+  h1 {
+    ${mobile({
+      fontSize: "1.8rem",
+    })}
   }
 `;
 
@@ -38,6 +55,7 @@ const Box = styled.div`
   padding: 1rem;
   width: 100%;
   flex: 1;
+  ${mobile({})}
 `;
 const Total = styled.div`
   flex: 0.4;
@@ -46,6 +64,9 @@ const Total = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${mobile({
+    padding: "1rem 0",
+  })}
 `;
 const SelectedPlan = styled.div`
   height: 60px;

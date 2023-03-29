@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import { mobile } from "../Responsive";
 
 const Container = styled.div`
   width: 100%;
@@ -13,6 +15,9 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 1.1rem;
   padding: 2rem;
+  ${mobile({
+    padding: "4rem 0.8rem",
+  })}
 `;
 const Box = styled.div`
   flex: 1;
@@ -23,12 +28,18 @@ const Box = styled.div`
 const Title = styled.h1`
   font-weight: 700;
   color: hsl(213, 96%, 18%);
+  ${mobile({
+    fontSize: "1.8rem",
+  })}
 `;
 const Desc = styled.p`
   text-align: center;
   line-height: 30px;
   font-weight: 500;
   color: #7c7b7b;
+  ${mobile({
+    lineHeight: "25px",
+  })}
 `;
 
 const Icon = styled.div`
@@ -38,9 +49,18 @@ const Icon = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  ${mobile({
+    width: "60px",
+    height: "60px",
+  })}
 `;
 
 const ThankYou = () => {
+  useEffect(() => {
+    localStorage.removeItem("isChecked");
+    localStorage.removeItem("selected");
+  }, []);
+
   return (
     <Container>
       <Wrapper>
