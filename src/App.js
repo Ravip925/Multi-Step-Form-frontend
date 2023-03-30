@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PersonalInfo from './components/PersonalInfo';
 import PlanSelection from './components/PlanSelection';
@@ -24,7 +25,7 @@ const AppContainer = styled.div`
 })}
 `;
 const AppWrapper = styled.div`
-  width: 65%;
+  width: 900px;
   height: 80vh;
   border-radius: 15px;
   background-color: white;
@@ -138,7 +139,17 @@ const App = () => {
       customize: false,
       largerStorage: false
     },
+
   });
+  const [data, setData] = useState({
+    planFee: 0,
+    total: 0,
+    addOnPrice: {
+      onlineService: 0,
+      customize: 0,
+      largerStorage: 0
+    }
+  })
 
   const [errors, setErrors] = useState({});
   const [billingCycle, setBillingCycle] = useState("monthly");
@@ -196,7 +207,7 @@ const App = () => {
     { component: <PersonalInfo errors={errors} formData={formData} handleChange={handleChange} navigation={navigation} /> },
     { component: <PlanSelection formData={formData} handleBillingChange={handleBillingChange} handleChange={handleChange} billingCycle={billingCycle} /> },
     { component: <AddOnSelection formData={formData} billingCycle={billingCycle} setFormData={setFormData} navigation={navigation} /> },
-    { component: <Finish formData={formData} billingCycle={billingCycle} navigation={navigation} /> },
+    { component: <Finish formData={formData} setData={setData} billingCycle={billingCycle} navigation={navigation} /> },
     { component: <ThankYou /> },
   ];
 
@@ -212,10 +223,39 @@ const App = () => {
   };
 
 
+  const handleSubmit = async () => {
+    const { userName, phoneNum, email, plan } = formData;
+    const { planFee, total, addOnPrice } = data;
+    const userData = {
+      userName: userName,
+      email: email,
+      phoneNum: phoneNum,
+      plan: plan,
+      planCycle: billingCycle,
+      planFee: planFee,
+      total: total,
+      addons: {
+        onlineService: addOnPrice.onlineService,
+        customize: addOnPrice.customize,
+        largerStorage: addOnPrice.largerStorage
+      }
+    }
+    try {
+      const res = await axios.post("http://localhost:5000/api/form", userData);
+      if (res.status === 200) {
+        navigation.go(4)
+        console.log(res.data);
+      } else {
+        console.log("Error: " + res.message);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 425) {
+      if (window.innerWidth <= 602) {
         setIsMobileWidth(true);
       } else {
         setIsMobileWidth(false);
@@ -239,7 +279,7 @@ const App = () => {
             ) : (
               step === 1 && <Button onClick={handleNextPlan}>Next Step</Button>
             )}
-            {step === 3 && <Button onClick={() => navigation.go(4)}>Submit</Button>}
+            {step === 3 && <Button onClick={handleSubmit}>Submit</Button>}
           </ButtonsContainer>
         </MainContent>
       </AppWrapper>

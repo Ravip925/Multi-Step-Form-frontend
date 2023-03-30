@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { mobile } from "../Responsive";
 
@@ -107,7 +108,7 @@ const Desc = styled.p`
   color: #454545;
 `;
 
-const Finish = ({ formData, billingCycle, navigation }) => {
+const Finish = ({ formData, billingCycle, navigation, setData }) => {
   const { plan, addons } = formData;
 
   const planPrices = {
@@ -134,6 +135,27 @@ const Finish = ({ formData, billingCycle, navigation }) => {
       : 0;
     return acc + addonPrice;
   }, planPrices[`${plan}-${billingCycle}`]);
+
+  const selectedOnlineServicePrice = addons.onlineService
+    ? onlineServicePrice
+    : 0;
+  const selectedCustomizePrice = addons.customize ? customizePrice : 0;
+  const selectedLargerStoragePrice = addons.largerStorage
+    ? largerStoragePrice
+    : 0;
+
+  useEffect(() => {
+    console.log("rendered");
+    setData({
+      planFee: planPrice,
+      total: total,
+      addOnPrice: {
+        onlineService: selectedOnlineServicePrice,
+        customize: selectedCustomizePrice,
+        largerStorage: selectedLargerStoragePrice,
+      },
+    });
+  }, [plan, total, selectedOnlineServicePrice, selectedCustomizePrice, selectedLargerStoragePrice, planPrice, setData]);
 
   return (
     <Container>

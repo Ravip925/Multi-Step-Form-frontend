@@ -24,12 +24,12 @@ The main objective of this project is to create a multi-step form that allows us
 
 ### Screenshot
 
-![](https://i.ibb.co/yW9gm1x/Multi-step-form-desk.png)
+![](https://i.ibb.co/5kZYQQd/Multi-step-form-desk.png)
 
 ### Links
 
-- GitHub Repo URL: [Add solution URL here](https://github.com/Ravip925/Multi-Step-Form-frontend)
-- Live Site URL: [Add live site URL here](https://multi-step-form-frontend-ravip925.vercel.app/)
+- GitHub Repo URL: [Click Here](https://github.com/Ravip925/Multi-Step-Form-frontend)
+- Live Site URL: [Click Here](https://multi-step-form-frontend-ravip925.vercel.app/)
 
 ## My Approach
 
@@ -98,8 +98,8 @@ During this project, I found the following resources to be particularly helpful:
 
 ## Author
 
-- Website - [Ravichandra Patil](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Website - [Ravichandra Patil](https://react-portfolio-ravi.netlify.app/)
+- Frontend Mentor - [Ravip925](https://www.frontendmentor.io/profile/Ravip925)
 - Twitter - [@Ravipatiiil](https://twitter.com/Ravipatiiil)
 
 ## Acknowledgments
