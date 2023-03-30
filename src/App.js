@@ -255,7 +255,7 @@ const App = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 425) {
+      if (window.innerWidth <= 602) {
         setIsMobileWidth(true);
       } else {
         setIsMobileWidth(false);
