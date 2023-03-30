@@ -109,7 +109,7 @@ const PersonalInfo = ({ formData, handleChange, errors }) => {
             required
             autoComplete="off"
             type={"text"}
-            placeholder="Name"
+            placeholder="e.g. Ravi Patil"
             id="userName"
             name="userName"
             value={userName}
@@ -125,7 +125,7 @@ const PersonalInfo = ({ formData, handleChange, errors }) => {
             required
             autoComplete="off"
             type={"email"}
-            placeholder="Email Address"
+            placeholder="e.g. ravipatil@gmail.com"
             id="email"
             name="email"
             value={email}
@@ -143,7 +143,7 @@ const PersonalInfo = ({ formData, handleChange, errors }) => {
             required
             autoComplete="off"
             type={"number"}
-            placeholder="Phone Number"
+            placeholder="e.g. +1234567890"
             id="phoneNum"
             name="phoneNum"
             value={phoneNum}
