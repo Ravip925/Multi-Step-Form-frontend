@@ -241,7 +241,7 @@ const App = () => {
       }
     }
     try {
-      const res = await axios.post("http://localhost:5000/api/form", userData);
+      const res = await axios.post("https://form-data-api.cyclic.app/api/form", userData);
       if (res.status === 200) {
         navigation.go(4)
         console.log(res.data);

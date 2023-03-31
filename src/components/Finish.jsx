@@ -145,7 +145,6 @@ const Finish = ({ formData, billingCycle, navigation, setData }) => {
     : 0;
 
   useEffect(() => {
-    console.log("rendered");
     setData({
       planFee: planPrice,
       total: total,
@@ -155,7 +154,15 @@ const Finish = ({ formData, billingCycle, navigation, setData }) => {
         largerStorage: selectedLargerStoragePrice,
       },
     });
-  }, [plan, total, selectedOnlineServicePrice, selectedCustomizePrice, selectedLargerStoragePrice, planPrice, setData]);
+  }, [
+    plan,
+    total,
+    selectedOnlineServicePrice,
+    selectedCustomizePrice,
+    selectedLargerStoragePrice,
+    planPrice,
+    setData,
+  ]);
 
   return (
     <Container>
