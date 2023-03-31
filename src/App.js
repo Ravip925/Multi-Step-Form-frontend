@@ -152,6 +152,7 @@ const App = () => {
   })
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [step, setStep] = useState(0);
   const [isMobileWidth, setIsMobileWidth] = useState(false);
@@ -208,7 +209,7 @@ const App = () => {
     { component: <PlanSelection formData={formData} handleBillingChange={handleBillingChange} handleChange={handleChange} billingCycle={billingCycle} /> },
     { component: <AddOnSelection formData={formData} billingCycle={billingCycle} setFormData={setFormData} navigation={navigation} /> },
     { component: <Finish formData={formData} setData={setData} billingCycle={billingCycle} navigation={navigation} /> },
-    { component: <ThankYou /> },
+    { component: <ThankYou loading={loading} /> },
   ];
 
   const { component } = steps[step];
@@ -241,8 +242,10 @@ const App = () => {
       }
     }
     try {
+      setLoading(true);
       const res = await axios.post("https://form-data-api.cyclic.app/api/form", userData);
       if (res.status === 200) {
+        setLoading(false);
         navigation.go(4)
         console.log(res.data);
       } else {

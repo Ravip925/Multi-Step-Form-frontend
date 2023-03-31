@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { mobile } from "../Responsive";
+import "../index.css";
 
 const Container = styled.div`
   width: 100%;
@@ -55,7 +56,7 @@ const Icon = styled.div`
   })}
 `;
 
-const ThankYou = () => {
+const ThankYou = ({ loading }) => {
   useEffect(() => {
     localStorage.removeItem("isChecked");
     localStorage.removeItem("selected");
@@ -64,19 +65,25 @@ const ThankYou = () => {
   return (
     <Container>
       <Wrapper>
-        <Box>
-          <Icon path={"/images/icon-thank-you.svg"}></Icon>
-        </Box>
-        <Box>
-          <Title>Thank You!</Title>
-        </Box>
-        <Box>
-          <Desc>
-            Thanks for confirming your subscription! We hope you have fun using
-            our platform. if you ever need support, please feel free to email us
-            at support@loremgaming.com
-          </Desc>
-        </Box>
+        {loading === true ? (
+          <div class="loader"></div>
+        ) : (
+          <>
+            <Box>
+              <Icon path={"/images/icon-thank-you.svg"}></Icon>
+            </Box>
+            <Box>
+              <Title>Thank You!</Title>
+            </Box>
+            <Box>
+              <Desc>
+                Thanks for confirming your subscription! We hope you have fun
+                using our platform. if you ever need support, please feel free
+                to email us at support@loremgaming.com
+              </Desc>
+            </Box>
+          </>
+        )}
       </Wrapper>
     </Container>
   );
